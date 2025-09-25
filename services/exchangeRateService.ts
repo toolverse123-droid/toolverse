@@ -1,6 +1,6 @@
 // This service now uses a live API from https://www.exchangerate-api.com/
 // The API key must be set as an environment variable named EXCHANGE_RATE_API_KEY.
-const API_KEY = process.env.VITE_EXCHANGE_RATE_API_KEY;
+const API_KEY = import.meta.env.VITE_EXCHANGE_RATE_API_KEY;
 const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
 
 interface RatesCache {
