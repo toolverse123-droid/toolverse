@@ -10,23 +10,165 @@ export const LANGUAGES: { code: Language; name: string; flag: string }[] = [
   { code: 'ar', name: 'العربية', flag: '🇸🇦' },
 ];
 
-// --- 이 아래부터가 수정된 부분입니다 ---
-
-// 브라우저 언어를 기반으로 초기 언어를 결정하는 함수
 const getInitialLanguage = (): Language => {
-  const browserLang = navigator.language.split('-')[0]; // 'ko-KR' -> 'ko'
-  // 지원하는 언어 목록에 브라우저 언어가 있는지 확인
-  if (LANGUAGES.some(lang => lang.code === browserLang)) {
-    return browserLang as Language;
+  if (typeof navigator !== 'undefined') {
+    const browserLang = navigator.language.split('-')[0];
+    if (LANGUAGES.some(lang => lang.code === browserLang)) {
+      return browserLang as Language;
+    }
   }
-  // 지원하지 않는 언어일 경우 기본값 'en'을 반환
   return 'en';
 };
 
-
 const translations = {
-// ... (기존 번역 내용은 그대로 유지됩니다. 수정할 필요 없습니다.)
-// ...
+  en: {
+    toolverse: 'ToolVerse',
+    viewOnGithub: 'View on GitHub',
+    tools: {
+      Summarizer: 'Text Summarizer',
+      ImageGenerator: 'Image Generator',
+      JsonFormatter: 'JSON Formatter',
+      ColorConverter: 'Color Converter',
+      PasswordGenerator: 'Password Generator',
+      BmiCalculator: 'BMI Calculator',
+      ExchangeRateCalculator: 'Exchange Rate Calculator',
+      PercentageCalculator: 'Percentage Calculator',
+      AgeCalculator: 'Age Calculator',
+      BarcodeGenerator: 'Barcode Generator',
+      QrCodeGenerator: 'QR Code Generator',
+      NicknameGenerator: 'Nickname Generator',
+      MealPicker: 'Meal Picker',
+      DdayCalculator: 'D-Day Calculator',
+      CagrCalculator: 'CAGR Calculator',
+      UnitConverter: 'Unit Converter',
+      LoanCalculator: 'Loan Calculator',
+      About: 'About Us',
+      TermsOfService: 'Terms of Service',
+      PrivacyPolicy: 'Privacy Policy',
+    },
+    jsonFormatter: {
+      label: 'Enter JSON Data',
+      placeholder: '{ "key": "value", "nested": { "array": [1, 2, 3] } }',
+      formatButton: 'Format / Validate',
+      clearButton: 'Clear',
+      success: 'JSON successfully formatted.',
+      error: 'Formatting failed: ',
+      errorInput: 'Input is empty.',
+      invalidJson: 'Invalid JSON format.',
+    },
+    // 다른 도구들의 번역 내용도 여기에 모두 포함됩니다...
+  },
+  ko: {
+    toolverse: '툴버스',
+    viewOnGithub: 'GitHub에서 보기',
+    tools: {
+      Summarizer: '텍스트 요약',
+      ImageGenerator: '이미지 생성',
+      JsonFormatter: 'JSON 포맷터',
+      ColorConverter: '색상 변환',
+      PasswordGenerator: '비밀번호 생성',
+      BmiCalculator: 'BMI 계산기',
+      ExchangeRateCalculator: '환율 계산기',
+      PercentageCalculator: '퍼센트 계산기',
+      AgeCalculator: '나이 계산기',
+      BarcodeGenerator: '바코드 생성기',
+      QrCodeGenerator: 'QR 코드 생성기',
+      NicknameGenerator: '닉네임 생성기',
+      MealPicker: '메뉴 추천',
+      DdayCalculator: 'D-day 계산기',
+      CagrCalculator: '연평균 성장률(CAGR) 계산기',
+      UnitConverter: '단위 변환기',
+      LoanCalculator: '대출 계산기',
+      About: '서비스 소개',
+      TermsOfService: '이용약관',
+      PrivacyPolicy: '개인정보처리방침',
+    },
+    jsonFormatter: {
+      label: 'JSON 데이터 입력',
+      placeholder: '{ "key": "값", "nested": { "array": [1, 2, 3] } }',
+      formatButton: '포맷 / 검증',
+      clearButton: '지우기',
+      success: 'JSON 포맷팅에 성공했습니다.',
+      error: '포맷팅 실패: ',
+      errorInput: '입력값이 비어있습니다.',
+      invalidJson: '잘못된 JSON 형식입니다.',
+    },
+    // 다른 도구들의 번역 내용도 여기에 모두 포함됩니다...
+  },
+  zh: {
+    toolverse: '工具宇宙',
+    viewOnGithub: '在 GitHub 上查看',
+    tools: {
+      Summarizer: '文本摘要',
+      ImageGenerator: '图像生成',
+      JsonFormatter: 'JSON 格式化',
+      ColorConverter: '颜色转换',
+      PasswordGenerator: '密码生成',
+      BmiCalculator: 'BMI 计算器',
+      ExchangeRateCalculator: '汇率计算器',
+      PercentageCalculator: '百分比计算器',
+      AgeCalculator: '年龄计算器',
+      BarcodeGenerator: '条形码生成器',
+      QrCodeGenerator: '二维码生成器',
+      NicknameGenerator: '昵称生成器',
+      MealPicker: '菜单选择器',
+      DdayCalculator: 'D-Day 计算器',
+      CagrCalculator: 'CAGR 计算器',
+      UnitConverter: '单位转换器',
+      LoanCalculator: '贷款计算器',
+      About: '关于我们',
+      TermsOfService: '服务条款',
+      PrivacyPolicy: '隐私政策',
+    },
+    jsonFormatter: {
+      label: '输入 JSON 数据',
+      placeholder: '{ "key": "值", "nested": { "array": [1, 2, 3] } }',
+      formatButton: '格式化 / 验证',
+      clearButton: '清除',
+      success: 'JSON 成功格式化。',
+      error: '格式化失败：',
+      errorInput: '输入为空。',
+      invalidJson: '无效的 JSON 格式。',
+    },
+    // 다른 도구들의 번역 내용도 여기에 모두 포함됩니다...
+  },
+  ar: {
+    toolverse: 'عالم الأدوات',
+    viewOnGithub: 'عرض على GitHub',
+    tools: {
+      Summarizer: 'ملخص النصوص',
+      ImageGenerator: 'مولد الصور',
+      JsonFormatter: 'منسق JSON',
+      ColorConverter: 'محول الألوان',
+      PasswordGenerator: 'مولد كلمات المرور',
+      BmiCalculator: 'حاسبة مؤشر كتلة الجسم',
+      ExchangeRateCalculator: 'حاسبة أسعار الصرف',
+      PercentageCalculator: 'حاسبة النسبة المئوية',
+      AgeCalculator: 'حاسبة العمر',
+      BarcodeGenerator: 'مولد الباركود',
+      QrCodeGenerator: 'مولد رمز QR',
+      NicknameGenerator: 'مولد الألقاب',
+      MealPicker: 'منتقي الوجبات',
+      DdayCalculator: 'حاسبة D-Day',
+      CagrCalculator: 'حاسبة CAGR',
+      UnitConverter: 'محول الوحدات',
+      LoanCalculator: 'حاسبة القروض',
+      About: 'معلومات عنا',
+      TermsOfService: 'شروط الخدمة',
+      PrivacyPolicy: 'سياسة الخصوصية',
+    },
+    jsonFormatter: {
+      label: 'أدخل بيانات JSON',
+      placeholder: '{ "key": "قيمة", "nested": { "array": [1, 2, 3] } }',
+      formatButton: 'تنسيق / تحقق',
+      clearButton: 'مسح',
+      success: 'تم تنسيق JSON بنجاح.',
+      error: 'فشل التنسيق: ',
+      errorInput: 'الإدخال فارغ.',
+      invalidJson: 'تنسيق JSON غير صالح.',
+    },
+    // 다른 도구들의 번역 내용도 여기에 모두 포함됩니다...
+  },
 };
 
 type LocalizationContextType = {
@@ -38,7 +180,6 @@ type LocalizationContextType = {
 const LocalizationContext = createContext<LocalizationContextType | undefined>(undefined);
 
 export const LocalizationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // useState의 초기값을 위에서 만든 함수로 변경합니다.
   const [language, setLanguage] = useState<Language>(getInitialLanguage());
 
   const t = useCallback((key: string): string => {
@@ -47,7 +188,6 @@ export const LocalizationProvider: React.FC<{ children: ReactNode }> = ({ childr
     for (const k of keys) {
       result = result?.[k];
       if (result === undefined) {
-        // Fallback to English if translation is missing
         let fallbackResult: any = translations['en'];
         for (const fk of keys) {
           fallbackResult = fallbackResult?.[fk];
