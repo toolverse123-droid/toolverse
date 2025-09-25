@@ -23,7 +23,7 @@ import { useLocalization } from './i18n';
 import { MenuIcon } from './components/icons/Icons';
 
 const App: React.FC = () => {
-  const [activeTool, setActiveTool] = useState<Tool>(Tool.Summarizer);
+  const [activeTool, setActiveTool] = useState<Tool>(Tool.JsonFormatter);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { t, language } = useLocalization();
 
@@ -34,10 +34,10 @@ const App: React.FC = () => {
 
   const renderTool = () => {
     switch (activeTool) {
-      case Tool.Summarizer:
-        return <Summarizer />;
-      case Tool.ImageGenerator:
-        return <ImageGenerator />;
+      //case Tool.Summarizer:
+      //  return <Summarizer />;
+      //case Tool.ImageGenerator:
+      //  return <ImageGenerator />;
       case Tool.JsonFormatter:
         return <JsonFormatter />;
       case Tool.ColorConverter:
@@ -75,7 +75,7 @@ const App: React.FC = () => {
       case Tool.PrivacyPolicy:
         return <InfoPage translationKey="privacypolicy" />;
       default:
-        return <Summarizer />;
+        return <JsonFormatter />;
     }
   };
 

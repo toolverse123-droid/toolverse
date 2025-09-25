@@ -41,8 +41,8 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTool, setActiveTool, isOpen, se
   const handleClose = () => setIsOpen(false);
   
   const tools: { label: Tool; icon: React.ReactNode }[] = [
-    { label: Tool.Summarizer, icon: <TextIcon /> },
-    { label: Tool.ImageGenerator, icon: <ImageIcon /> },
+    //{ label: Tool.Summarizer, icon: <TextIcon /> },//
+    //{ label: Tool.ImageGenerator, icon: <ImageIcon /> },//
     { label: Tool.JsonFormatter, icon: <JsonIcon /> },
     { label: Tool.ColorConverter, icon: <ColorIcon /> },
     { label: Tool.PasswordGenerator, icon: <PasswordIcon /> },
