@@ -1,0 +1,6 @@
+
+{
+  "name": "ToolVerse",
+  "description": "A versatile multilingual web toolkit, ToolVerse offers a range of utilities including a text summarizer and image generator powered by Gemini, a JSON formatter, a color converter, and a secure password generator. Available in English, Korean, Chinese, and Arabic.",
+  "requestFramePermissions": []
+}
