@@ -1007,7 +1007,7 @@ const translations = {
         content: `<h3>ToolVerse 개인정보처리방침</h3><p><strong>최종 업데이트: 2024-05-20</strong></p><p>본 개인정보처리방침은 귀하가 ToolVerse를 사용할 때 귀하의 정보가 어떻게 처리되는지를 설명합니다.</p><h4>1. 수집하는 정보</h4><p>당사는 서비스 제공을 위해 최소한의 정보만 수집하는 것을 목표로 합니다. 귀하가 제공하는 데이터(예: 요약을 위한 텍스트)는 귀하가 사용하는 특정 도구를 운영하기 위한 목적으로만 사용됩니다.</p><h4>2. 정보 사용 방법</h4><ul><li><strong>AI 도구:</strong> 텍스트와 프롬프트는 처리를 위해 Google Gemini API로 전송됩니다. 당사는 귀하의 입력이나 결과물을 저장하지 않습니다. Google의 데이터 처리 방식에 대해서는 Google의 개인정보처리방침을 참조하십시오.</li><li><strong>클라이언트 측 도구:</strong> JSON 포맷터 및 비밀번호 생성기와 같은 다른 도구는 전적으로 브라우저 내에서 작동합니다. 이 데이터는 당사 서버로 전송되지 않습니다.</li></ul><h4>3. 쿠키</h4><p>당사는 추적 목적으로 쿠키를 사용하지 않습니다. 언어 선택과 같은 기본 설정을 저장하기 위해 로컬 스토리지를 사용할 수 있으며, 이 정보는 귀하의 장치에만 저장됩니다.</p><h4>4. 제3자 서비스</h4><p>Google Gemini API로 구동되는 기능의 사용은 Google의 약관 및 개인정보처리방침의 적용을 받습니다.</p><h4>5. 문의하기</h4><p>본 개인정보처리방침에 대해 질문이 있으시면 다음 주소로 문의할 수 있습니다: <a href="mailto:toolverse123@gmail.com" class="text-cyan-400 hover:underline">toolverse123@gmail.com</a>.</p>`
     },
   },
-
+};
 type LocalizationContextType = {
   language: Language;
   setLanguage: (language: Language) => void;
