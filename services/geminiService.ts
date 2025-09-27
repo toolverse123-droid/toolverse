@@ -1,62 +1,23 @@
-
-import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
-
-let ai: GoogleGenAI | null = null;
-
-const getAi = (): GoogleGenAI => {
-    if (!process.env.API_KEY) {
-      throw new Error("Gemini API key is not configured.");
-    }
-    if (!ai) {
-        ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    }
-    return ai;
-}
-
+// services/geminiService.ts
 export const summarizeText = async (text: string, prompt: string, systemInstruction: string): Promise<string> => {
-  try {
-    const generativeAi = getAi();
-    const response: GenerateContentResponse = await generativeAi.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: `${prompt}\n\n${text}`,
-      config: {
-        systemInstruction: systemInstruction,
-      }
-    });
-    return response.text;
-  } catch (error) {
-    console.error("Error summarizing text:", error);
-    if (error instanceof Error && error.message.includes("Gemini API key is not configured")) {
-        throw error;
-    }
-    throw new Error("Failed to get summary from Gemini API.");
+  const response = await fetch('/.netlify/functions/gemini', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text, prompt, systemInstruction }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Failed to get summary from backend.");
   }
+
+  const data = await response.json();
+  return data.result;
 };
 
+// ImageGenerator 기능은 현재 백엔드 함수에 구현되지 않았으므로 주석 처리하거나 삭제합니다.
+/*
 export const generateImage = async (prompt: string): Promise<string> => {
-  try {
-    const generativeAi = getAi();
-    const response = await generativeAi.models.generateImages({
-      model: 'imagen-4.0-generate-001',
-      prompt: prompt,
-      config: {
-        numberOfImages: 1,
-        outputMimeType: 'image/png',
-        aspectRatio: '1:1',
-      },
-    });
-
-    if (response.generatedImages && response.generatedImages.length > 0) {
-      const base64ImageBytes: string = response.generatedImages[0].image.imageBytes;
-      return `data:image/png;base64,${base64ImageBytes}`;
-    } else {
-      throw new Error("No image was generated.");
-    }
-  } catch (error) {
-    console.error("Error generating image:", error);
-    if (error instanceof Error && error.message.includes("Gemini API key is not configured")) {
-        throw error;
-    }
-    throw new Error("Failed to generate image from Gemini API.");
-  }
+  // 이 기능도 gemini.ts 백엔드 함수에 로직을 추가해야 합니다.
 };
+*/

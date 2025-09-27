@@ -1,52 +1,18 @@
-// This service now uses a live API from https://www.exchangerate-api.com/
-// The API key must be set as an environment variable named EXCHANGE_RATE_API_KEY.
-const API_KEY = import.meta.env.VITE_EXCHANGE_RATE_API_KEY;
-const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
-
-interface RatesCache {
-    data: { [key: string]: number } | null;
-    timestamp: number;
-}
-
-let ratesCache: RatesCache = {
-    data: null,
-    timestamp: 0,
-};
+// services/exchangeRateService.ts
+let ratesCache: { [key: string]: number } | null = null;
 
 const getRates = async (): Promise<{ [key: string]: number }> => {
-    if (!API_KEY) {
-        console.error("EXCHANGE_RATE_API_KEY environment variable not set.");
-        throw new Error("API key is not configured.");
+    if (ratesCache) {
+        return ratesCache;
     }
 
-    const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`;
-    const now = Date.now();
-    if (ratesCache.data && now - ratesCache.timestamp < CACHE_DURATION) {
-        return ratesCache.data;
+    const response = await fetch('/.netlify/functions/exchange');
+    if (!response.ok) {
+        throw new Error('Failed to fetch exchange rates from backend.');
     }
-
-    try {
-        const response = await fetch(API_URL);
-        if (!response.ok) {
-            throw new Error('Failed to fetch exchange rates.');
-        }
-        const data = await response.json();
-        if (data.result === 'error') {
-            throw new Error(`API Error: ${data['error-type']}`);
-        }
-        
-        ratesCache = {
-            data: data.conversion_rates,
-            timestamp: now,
-        };
-        return data.conversion_rates;
-
-    } catch (error) {
-        console.error("Error fetching rates:", error);
-        // If fetching fails, clear cache and re-throw
-        ratesCache.data = null; 
-        throw error;
-    }
+    const data = await response.json();
+    ratesCache = data;
+    return data;
 };
 
 export interface Currency {
@@ -70,19 +36,12 @@ export const convertCurrency = async (amount: number, fromCurrency: string, toCu
     if (fromCurrency === toCurrency) {
         return amount;
     }
-
     const rates = await getRates();
-
     const fromRate = rates[fromCurrency];
     const toRate = rates[toCurrency];
-
     if (!fromRate || !toRate) {
         throw new Error("Currency not supported");
     }
-
-    // Amount is converted to USD (base currency) first, then to the target currency
     const amountInUsd = amount / fromRate;
-    const convertedAmount = amountInUsd * toRate;
-
-    return convertedAmount;
+    return amountInUsd * toRate;
 };
