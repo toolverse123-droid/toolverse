@@ -6,8 +6,6 @@ import { Tool } from '../../types';
 const meals: Record<string, string[]> = {
     en: ['Pizza', 'Hamburger', 'Sushi', 'Pasta', 'Tacos', 'Salad', 'Steak', 'Fried Chicken', 'Ramen', 'Pho'],
     ko: ['피자', '햄버거', '초밥', '파스타', '타코', '샐러드', '스테이크', '치킨', '라멘', '쌀국수'],
-    zh: ['披萨', '汉堡包', '寿司', '意大利面', '塔可', '沙拉', '牛排', '炸鸡', '拉面', '越南河粉'],
-    ar: ['بيتزا', 'همبرغر', 'سوشي', 'باستا', 'تاكو', 'سلطة', 'ستيك', 'دجاج مقلي', 'رامن', 'فو'],
 };
 
 const MealPicker: React.FC = () => {

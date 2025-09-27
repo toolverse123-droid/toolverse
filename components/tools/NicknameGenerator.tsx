@@ -6,15 +6,11 @@ import { Tool } from '../../types';
 const adjectives: Record<string, string[]> = {
     en: ['Quick', 'Happy', 'Silent', 'Red', 'Cosmic', 'Ancient', 'Mystic', 'Brave', 'Gentle', 'Shadow'],
     ko: ['빠른', '행복한', '조용한', '붉은', '우주적', '고대의', '신비한', '용감한', '온화한', '그림자'],
-    zh: ['快速的', '快乐的', '安静的', '红色的', '宇宙的', '古老的', '神秘的', '勇敢的', '温柔的', '影子'],
-    ar: ['سريع', 'سعيد', 'صامت', 'أحمر', 'كوني', 'قديم', 'غامض', 'شجاع', 'لطيف', 'ظل'],
 };
 
 const nouns: Record<string, string[]> = {
     en: ['Fox', 'Panda', 'Tiger', 'Eagle', 'Robot', 'Wizard', 'Ninja', 'Star', 'River', 'Moon'],
     ko: ['여우', '판다', '호랑이', '독수리', '로봇', '마법사', '닌자', '별', '강', '달'],
-    zh: ['狐狸', '熊猫', '老虎', '鹰', '机器人', '巫师', '忍者', '星星', '河流', '月亮'],
-    ar: ['ثعلب', 'باندا', 'نمر', 'نسر', 'روبوت', 'ساحر', 'نينجا', 'نجم', 'نهر', 'قمر'],
 };
 
 const NicknameGenerator: React.FC = () => {
